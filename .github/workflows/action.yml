@@ -18,4 +18,6 @@ jobs:
         # package.json에 기록을 남기지 않는다.
         run: yarn install --immutable --immutable-cache --check-cache
       - name: run tests
-        run: yarn test
+        run: |
+          cd practice-storybook-with-github-actions
+          yarn test
