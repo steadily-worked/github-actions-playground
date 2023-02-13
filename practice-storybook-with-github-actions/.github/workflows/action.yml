@@ -1,0 +1,21 @@
+/name: Test Vite Project
+on:
+  push:
+    branches: ["main"]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # 일단 코드를 가져와야 뭘 할 수가 있음. GitHub에서 자동으로 코드를 가져오지 않음
+      - name: Checkout
+        uses: actions/checkout@v3.3.0
+      # ubuntu-latest에 pre-installed지만 연습용으로 node.js를 설치하는 커맨드 추가
+      - name: installing node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install dependencies
+        # package.json에 기록을 남기지 않는다.
+        run: yarn install --immutable --immutable-cache --check-cache
+      - name: run tests
+        run: yarn test
