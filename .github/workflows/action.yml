@@ -1,4 +1,4 @@
-/name: Test Vite Project
+name: Test Vite Project
 on:
   push:
     branches: ["main"]
