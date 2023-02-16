@@ -21,4 +21,3 @@ jobs:
         uses: Borales/actions-yarn@v4.2.0
         with:
           cmd: test
-          dir: practice-storybook-with-github-actions
