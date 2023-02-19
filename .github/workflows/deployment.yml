@@ -22,6 +22,8 @@ jobs:
         with:
           cmd: test
   deploy:
+    # 이 job이 실행되기 위한 조건(다른 job). ['test', 'job2', ...] 등등 여러개를 설정할 수 있음.
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
