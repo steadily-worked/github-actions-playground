@@ -1,4 +1,4 @@
-name: Test Vite Project
+name: Deployment
 on:
   push:
     branches: ["main"]
@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3.3.0
       # ubuntu-latest에 pre-installed지만 연습용으로 node.js를 설치하는 커맨드 추가
-      - name: installing node.js
+      - name: install  node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -21,3 +21,18 @@ jobs:
         uses: Borales/actions-yarn@v4.2.0
         with:
           cmd: test
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.3.0
+      - name: install node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install dependencies
+        run: yarn install --immutable --immutable-cache --check-cache
+      - name: build
+        run: yarn build
+      - name: deploy
+        run: echo "Deploying.."
