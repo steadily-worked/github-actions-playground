@@ -1,29 +1,25 @@
-name: Deployment
-on: push
+name: pull request events
+on:
+  pull_request:
+    types:
+      - opened
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      # ex) dev-로 시작하는 모든브랜치
+      - "dev-*"
+      # asterisk가 두개인 경우는 2개 이상의 slash도 허용
+      - "feat/**"
+    # 이 경우엔 무시. paths: 인 경우 이 path 내 code change가 푸시될 때만 트리거
+    paths-ignore:
+      - ".github/workflows/*"
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      # 일단 코드를 가져와야 뭘 할 수가 있음. GitHub에서 자동으로 코드를 가져오지 않음
-      - name: Checkout
-        uses: actions/checkout@v3.3.0
-      # ubuntu-latest에 pre-installed지만 연습용으로 node.js를 설치하는 커맨드 추가
-      - name: install  node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: install dependencies
-        # package.json에 기록을 남기지 않는다.
-        run: yarn install --immutable --immutable-cache --check-cache
-      - name: run test
-        uses: Borales/actions-yarn@v4.2.0
-        with:
-          cmd: test
   deploy:
-    # 이 job이 실행되기 위한 조건(다른 job). ['test', 'job2', ...] 등등 여러개를 설정할 수 있음.
-    needs: test
     runs-on: ubuntu-latest
     steps:
+      - name: output event data
+        run: echo "${{ toJSON(github.event) }}"
       - name: Checkout
         uses: actions/checkout@v3.3.0
       - name: install node.js
@@ -32,7 +28,9 @@ jobs:
           node-version: 18
       - name: install dependencies
         run: yarn install --immutable --immutable-cache --check-cache
-      - name: build
+      - name: test
+        run: yarn test
+      - name: Build
         run: yarn build
       - name: deploy
-        run: echo "Deploying.."
+        run: echo "deployed!"
