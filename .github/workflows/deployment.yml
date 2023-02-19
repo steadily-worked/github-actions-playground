@@ -3,6 +3,8 @@ on:
   pull_request:
     types:
       - opened
+      # 누군가가 fork한 뒤 dev-*로 올리는 PR에 대해서는 트리거되지 않음. fork는 누구나 할 수 있기 때문에 항상 가능해진다면 부하를 일으키게 할 수 있음
+      - "dev-*"
   workflow_dispatch:
   push:
     branches:
