@@ -1,8 +1,5 @@
 name: Deployment
 on:
-  [push, workflow_dispatch]
-  # push:
-  #   branches: ["main"]
 jobs:
   test:
     runs-on: ubuntu-latest

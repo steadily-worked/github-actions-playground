@@ -1,0 +1,26 @@
+name: pull request events
+on:
+  pull_request:
+    types:
+      - opened
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: output event data
+        run: echo "${{ toJSON(github.event) }}"
+      - name: Checkout
+        uses: actions/checkout@v3.3.0
+      - name: install node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install dependencies
+        run: yarn install --immutable --immutable-cache --check-cache
+      - name: test
+        run: yarn test
+      - name: Build
+        run: yarn build
+      - name: deploy
+        run: echo "deployed!"
