@@ -1,0 +1,9 @@
+name: Output information
+on: workflow_dispatch
+jobs:
+  info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output GitHub context
+        # React에서 백틱을 이용하여 변수를 넣는 것처럼, 하드코딩된 값을 출력하는 게 아니라 데이터를 출력함
+        run: echo "${{ toJSON(github) }}"
