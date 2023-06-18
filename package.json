@@ -13,6 +13,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@typescript-eslint/parser": "^5.59.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

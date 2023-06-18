@@ -1,3 +1,5 @@
+import React from "react";
+
 const HELP_ITEMS = [
   {
     id: "help1",
@@ -14,7 +16,7 @@ const HELP_ITEMS = [
     title: "GitHub Actions?",
     text: "GitHub Actions는 레포와 관련된 워크플로우와 프로세스를 자동화할 수 있도록 도와주는 CI/CD 서비스인데... (생략)",
   },
-]
+];
 
 const HelpArea = () => {
   return (
@@ -26,7 +28,7 @@ const HelpArea = () => {
         </div>
       ))}
     </section>
-  )
-}
+  );
+};
 
-export default HelpArea
+export default HelpArea;

@@ -12,9 +12,19 @@
     "sourceType": "module"
   },
   "extends": ["plugin:react/recommended", "plugin:prettier/recommended"],
+  "parser": "@typescript-eslint/parser",
   "rules": {
     "semi": 0
   },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "react/no-unescaped-entities": "off"
+      }
+    }
+  ],
   "settings": {
     "react": {
       "version": "detect"
